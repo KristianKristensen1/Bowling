@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace BowlingGame
+﻿namespace BowlingGame
 {
     public class BowlingGame
     {
@@ -23,10 +21,9 @@ namespace BowlingGame
         /// Assigns the pins to the current frame and updates scores of frames
         /// </summary>
         /// <param name="pins">How many pins were knocked down by the roll</param>
-        /// <returns>Returns the frame nummber of the roll</returns>
         public void AddRoll(int pins)
         {
-            if (IsFinished) throw new Exception("Game is finished. No more rolling please");
+            if (IsFinished) throw new InvalidOperationException("Game is finished. No more rolling please");
             if (pins > 10 || pins < 0) throw new ArgumentException("Invalid value of roll");
 
             if (currentFrame.IsComplete())
@@ -39,18 +36,18 @@ namespace BowlingGame
             UpdateScores();
         }
 
-        public ReadOnlyCollection<Frame> GetScoreboard()
+        public List<Frame> GetScoreboard()
         {
-            return frames.AsReadOnly();
+            return frames;
         }
 
         private void UpdateScores()
         {
             // Calculate score of frames not yet calculated
-            var framesToCalculate = frames.Where(x => x.Score == null);
-
-            foreach (var frame in framesToCalculate)
+            foreach (var frame in frames)
             {
+                if (frame.Score.HasValue) continue; // Score is already calculated
+
                 var valueOfFrame = CalculateValueOfFrame(frame);
 
                 if (valueOfFrame == null) break;

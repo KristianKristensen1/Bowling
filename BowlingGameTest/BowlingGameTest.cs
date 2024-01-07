@@ -145,7 +145,7 @@ namespace BowlingGameTest
                 uut.AddRoll(3);
             }
 
-            Assert.Throws<Exception>(() => uut.AddRoll(3));
+            Assert.Throws<InvalidOperationException>(() => uut.AddRoll(3));
         }
     }
 }

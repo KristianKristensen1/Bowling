@@ -1,5 +1,4 @@
 ﻿using ConsoleTables;
-using System.Collections.ObjectModel;
 
 namespace BowlingGame
 {
@@ -34,7 +33,7 @@ namespace BowlingGame
             }
         }
 
-        static void DrawScoreboard(ReadOnlyCollection<Frame> scoreBoard)
+        static void DrawScoreboard(List<Frame> scoreBoard)
         {
             Console.Clear();
             table.Rows.Clear();

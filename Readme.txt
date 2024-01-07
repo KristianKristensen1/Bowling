@@ -15,12 +15,13 @@ no value will be added to the scoreboard. To access the subsequent rolls in an e
 each frame is stored in the frame. 
 
 Frame:
-The Frame class is responsible for validating the value of the rolls and for determining if the Frame is a strike or a spare. Dividing the rolls in frames is 
-necessary to track the progress of the game and to validate the value of second rolls in the frame.  
+The Frame class is responsible for validating the value of the rolls and for determining if the Frame is a strike or a spare. The frame is also responsible for
+determining if it is complete, so the game nows when to start the next frame.
+Dividing the rolls in frames is necessary to track the progress of the game and to validate the value of second rolls in the frame.  
 
 LastFrame:
 Inherits from Frame class, but overrides logic for validation and frame completion, since special rules applies for the last frame of the game. 
-This could be solved in different ways, but this way all the special logic regarding the final frame is located here. 
+This way all the special logic regarding the final frame is located here. 
 
 Program:
 Creates a console that can be used to interact with the BowlingGame. Just intended as a way to play around with the game. Uses ConsoleTables to draw the scoreboard.

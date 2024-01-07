@@ -16,7 +16,6 @@
 
         public override void RegisterPins(int pins)
         {
-            if (IsComplete()) throw new Exception("Cannot register pins in completed frame");
             if (!IsStrike && rolls.Count == 1 && rolls.ElementAt(0) + pins > 10) throw new ArgumentException("Number of pins in one frame cannot exceed 10");
 
             rolls.Add(pins);

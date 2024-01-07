@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Net.NetworkInformation;
 
 namespace BowlingGame
 {
@@ -7,9 +6,9 @@ namespace BowlingGame
     {
         public readonly int IndexOfFirstRoll;
         public int? Score { get; set; }
-        public ReadOnlyCollection<int?> Rolls { get { return rolls.AsReadOnly(); } }
         public bool IsStrike => rolls.FirstOrDefault() == 10;
         public bool IsSpare => !IsStrike && rolls.ElementAtOrDefault(0) + rolls.ElementAtOrDefault(1) == 10;
+        public ReadOnlyCollection<int?> Rolls { get { return rolls.AsReadOnly(); } }
         protected List<int?> rolls = new List<int?>();
 
         public Frame(int indexOfFirstRoll)
@@ -24,7 +23,6 @@ namespace BowlingGame
 
         public virtual void RegisterPins(int pins)
         {
-            if (IsComplete()) throw new Exception("Cannot register pins in completed frame");
             if (rolls.Sum(x => x) + pins > 10) throw new ArgumentException("Number of pins in one frame cannot exceed 10");
 
             rolls.Add(pins);
